@@ -6,6 +6,7 @@ import './register.css'
 import './index.css'
 
 import Banner from './assets/banner.png';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 const Register = () => {
@@ -19,6 +20,8 @@ const Register = () => {
     CGPA: ''
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -31,7 +34,7 @@ const Register = () => {
     // Add a new document with the form data
     try {
       const docRef = await addDoc(collection(db, "users"), formData);
-      console.log("Document written with ID: ", docRef.id);
+      navigate("registered")
       // Clear the form after submission
       setFormData({
         firstName: '',
