@@ -2,11 +2,11 @@
 import React, { useState } from 'react';
 import { db } from './firebase';
 import { collection, addDoc } from "firebase/firestore";
-import './register.css'
-import './index.css'
-
+import './register.css';
+import './index.css';
+import { useNavigate } from 'react-router-dom';
 import Banner from './assets/banner.png';
-
+import welcome from './welcome';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -18,6 +18,8 @@ const Register = () => {
     college: '',
     CGPA: ''
   });
+
+  const navigate = useNavigate(); // Hook for programmatic navigation
 
   const handleChange = (e) => {
     setFormData({
@@ -31,7 +33,8 @@ const Register = () => {
     // Add a new document with the form data
     try {
       const docRef = await addDoc(collection(db, "users"), formData);
-      console.log("Document written with ID: ", docRef.id);
+      // console.log("Document written with ID: ", docRef.id);
+      navigate("registered"); // Navigate to registered route after successful submission
       // Clear the form after submission
       setFormData({
         firstName: '',
@@ -48,18 +51,13 @@ const Register = () => {
   };
 
   return (
-
     <>
       <div className='flex justify-center items-center flex-col'>
-
         <div className='banner1'>
-
           <img src={Banner} alt="" />
           <h1>Registration</h1>
           <p>Welcome! Stay in tune with personalized content and KPMG thought leadership subscriptions.</p>
         </div>
-
-
         <form className='flex flex-col' onSubmit={handleSubmit}>
           <p>Enter your First name : </p>
           <input
@@ -70,7 +68,6 @@ const Register = () => {
             placeholder="First Name"
             required
           />
-
           <p>Enter your last name : </p>
           <input
             type="text"
@@ -80,7 +77,6 @@ const Register = () => {
             placeholder="Last Name"
             required
           />
-
           <p>Enter your Email : </p>
           <input
             type="email"
@@ -90,7 +86,6 @@ const Register = () => {
             placeholder="Email"
             required
           />
-
           <p>Enter your phone number : </p>
           <input
             type="number"
@@ -100,15 +95,6 @@ const Register = () => {
             placeholder="Phone Number"
             required
           />
-          {/* <input
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            placeholder="Confirm Password"
-            required
-          /> */}
-
           <p>Enter Education Degree :</p>
           <input
             type="text"
@@ -118,7 +104,6 @@ const Register = () => {
             placeholder="Degree"
             required
           />
-
           <p>Enter your college name :</p>
           <input
             type="text"
@@ -128,9 +113,8 @@ const Register = () => {
             placeholder="College"
             required
           />
-
           <p>Enter your Final year CGPA :</p>
-           <input
+          <input
             type="text"
             name="CGPA"
             value={formData.CGPA}
@@ -139,8 +123,7 @@ const Register = () => {
             required
           />
           <input type="file" name="" id="" placeholder='Resume'/>
-
-          <div className="agreement ">
+          <div className="agreement">
             <div className="agreement-checkbox flex items-center content-center">
               <input type="checkbox" required name="" id="checkbox" />
               <p>Required*</p>
@@ -153,20 +136,16 @@ const Register = () => {
               <input type="checkbox" required name="" id="checkbox" />
               <p>Required*</p>
             </div>
-            <p className='text-wrap'>By checking this box you consent to KPMGI sharing your personal data with its member firms for marketing purposes, including direct outreach regarding KPMG services. <br />
-
-
-
-              <br />Note: You will receive an email after registration to verify and activate  your account.
-              Also you will have options to self-serve to set your preferences for content personalization, subscription to newsletter, opt-in and opt-out from email communication and delete your account any time after registration.</p>
+            <p className='text-wrap'>
+              By checking this box you consent to KPMGI sharing your personal data with its member firms for marketing purposes, including direct outreach regarding KPMG services.
+              <br /><br />
+              Note: You will receive an email after registration to verify and activate your account. Also you will have options to self-serve to set your preferences for content personalization, subscription to newsletter, opt-in and opt-out from email communication and delete your account any time after registration.
+            </p>
           </div>
-
           <button type="submit" className='mt-5'>Register</button>
         </form>
       </div>
-
     </>
-
   );
 };
 
