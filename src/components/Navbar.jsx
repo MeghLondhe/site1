@@ -121,7 +121,7 @@ const Navbar = () => {
         </Logo>
         <NavLinksContainer isOpen={isOpen}>
         <NavLinks>
-          <NavLink to="/insights">Insights</NavLink>
+          <NavLink to="https://kpmg.com/xx/en/home/insights.html">Insights</NavLink>
           <NavLink to="/industries">Industries</NavLink>
           <NavLink to="/services">Services</NavLink>
           <NavLink to="/client-stories">Client Stories</NavLink>
