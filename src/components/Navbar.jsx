@@ -130,11 +130,11 @@ const Navbar = () => {
         </NavLinks>
       </NavLinksContainer>
         <Icons>
-        <IoPersonOutline size={20}/>
+        {/* <IoPersonOutline size={20}/>
 
         <IoSearch size={20}/>
 
-        <BsGlobeAsiaAustralia size={20}/>
+        <BsGlobeAsiaAustralia size={20}/> */}
 
         </Icons>
       </NavbarContainer>
