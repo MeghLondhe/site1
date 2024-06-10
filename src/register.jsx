@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import Banner from './assets/banner.png';
 
 
+
 const Register = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -18,6 +19,8 @@ const Register = () => {
     college: '',
     CGPA: ''
   });
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     setFormData({
@@ -32,6 +35,7 @@ const Register = () => {
     try {
       const docRef = await addDoc(collection(db, "users"), formData);
       console.log("Document written with ID: ", docRef.id);
+      navigate("registered")
       // Clear the form after submission
       setFormData({
         firstName: '',
