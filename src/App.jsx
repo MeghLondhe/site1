@@ -7,7 +7,7 @@ import './index.css'
 import Registered from './Registered';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Registered from './Registered';
+import { BiRegistered } from 'react-icons/bi';
 // import Students from './Students';
 
 const App = () => {
@@ -18,6 +18,9 @@ const App = () => {
       <div>
         <Navbar />
         <Routes>
+          <Route path="/" element={<Register/>}/>
+          <Route path="/registered" element={<Registered/>}/>
+
           <Route path="/insights" element={<div>Insights</div>} />
           <Route path="/industries" element={<div>Industries</div>} />
           <Route path="/services" element={<div>Services</div>} />
